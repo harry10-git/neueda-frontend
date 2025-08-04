@@ -1,18 +1,25 @@
-import React from "react";
-
-// Import images directly
-import img1 from "../assets/images-stocks/1.JPG";
-import img2 from "../assets/images-stocks/2.JPG";
-import img3 from "../assets/images-stocks/3.jpeg";
-import img4 from "../assets/images-stocks/4.JPEG";
-import img5 from "../assets/images-stocks/5.JPG";
-import img6 from "../assets/images-stocks/6.JPG";
-import img7 from "../assets/images-stocks/7.PNG";
-import img8 from "../assets/images-stocks/8.JPG";
-
-const images = [img1, img2, img3, img4, img5, img6, img7, img8];
+import React, { useEffect, useState } from "react";
 
 export default function AutoSlider() {
+  const [images, setImages] = useState([]); // State to store images from the API
+
+  useEffect(() => {
+    const fetchImages = async () => {
+      try {
+        const response = await fetch("http://localhost:3001/api/allStockLogos");
+        if (!response.ok) {
+          throw new Error("Failed to fetch images");
+        }
+        const data = await response.json();
+        setImages(data); // Update state with the fetched images
+      } catch (error) {
+        console.error("Error fetching images:", error);
+      }
+    };
+
+    fetchImages();
+  }, []);
+
   return (
     <div className="relative w-full overflow-hidden">
       <style>{`
@@ -33,12 +40,16 @@ export default function AutoSlider() {
         }
       `}</style>
 
-      <div className="slider-track">
-        {/* Duplicate images for smooth infinite loop */}
-        {images.concat(images).map((src, index) => (
-          <img key={index} src={src} alt={`img-${index}`} />
-        ))}
-      </div>
+      {images.length > 0 ? (
+        <div className="slider-track">
+          {/* Duplicate images for smooth infinite loop */}
+          {images.concat(images).map((src, index) => (
+            <img key={index} src={src} alt={`img-${index}`} />
+          ))}
+        </div>
+      ) : (
+        <p>Loading images...</p> // Show a loading message while fetching images
+      )}
     </div>
   );
 }

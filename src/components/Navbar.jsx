@@ -56,10 +56,10 @@ const Navbar = () => {
           </li>
           <li>
             <Link
-              to="/trades"
+              to="/sell"
               className="hover:text-gray-200 transition-colors duration-300"
             >
-              Trades
+              Sell
             </Link>
           </li>
           <li>

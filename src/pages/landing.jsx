@@ -1,38 +1,40 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
-
 import { Player } from "@lottiefiles/react-lottie-player"; // Import Lottie Player
 import investAnimiation from "../assets/Good investment makes it reach the target.json";
 import { TypeAnimation } from "react-type-animation";
 import AutoSlider from "../components/Slider";
+import Navbar from "../components/Navbar"; // Import Navbar
+import { AuthContext } from "../context/authContext"; // Import AuthContext
 
-const landing = () => {
+const Landing = () => {
   const navigate = useNavigate(); // Initialize navigate
+  const { user } = useContext(AuthContext); // Get user from AuthContext
 
   return (
-    <div style={{
+    <div
+      style={{
         backgroundColor: "#fff7f7",
         backgroundImage: 'url("https://www.transparenttextures.com/patterns/cubes.png")',
       }}
       className="min-h-screen"
     >
-      <nav className="bg-amber-500 py-4">
-        <h3>space for navbar</h3>
-      </nav>
+      {/* Conditionally render Navbar */}
+      {user && <Navbar />}
 
-      <div className="grid grid-cols-2">
+      <div className="grid grid-cols-2 py-4">
         <div>
           <Player autoplay loop src={investAnimiation} />
         </div>
         <div className="flex flex-col gap-2 items-center justify-center">
-          <h3 className="text-3xl">
+          <h3 className="text-4xl">
             Welcome to{" "}
             <span className="text-4xl font-semibold text-violet-600">
               NeuCoin.
             </span>
           </h3>
-          <p className="text-xl font-serif">
-            Your onestop solution to investment and portfolio management
+          <p className="text-2xl font-serif">
+            Your one-stop solution to investment and portfolio management
           </p>
 
           <TypeAnimation
@@ -42,11 +44,11 @@ const landing = () => {
               "We help you track money",
               1000,
               "We help you manage money",
-              1000
+              1000,
             ]}
             wrapper="span"
             speed={50}
-            style={{ fontSize: "1.5em", display: "inline-block" }}
+            style={{ fontSize: "2em", display: "inline-block" }}
             repeat={Infinity}
           />
 
@@ -67,14 +69,12 @@ const landing = () => {
           </div>
         </div>
       </div>
-    
-        <div className="mt-4">
-      <AutoSlider />
-        </div>
 
-    
+      <div className="mt-8">
+        <AutoSlider />
+      </div>
     </div>
   );
 };
 
-export default landing;
+export default Landing;
