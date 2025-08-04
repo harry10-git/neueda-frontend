@@ -12,8 +12,10 @@ const Overview = ({ holdings }) => {
       <table className="table-auto w-full bg-white shadow-md rounded-lg">
         <thead className="bg-gray-200">
           <tr>
+            <th className="px-4 py-2 text-left">Logo</th>
             <th className="px-4 py-2 text-left">Stock Name</th>
             <th className="px-4 py-2 text-left">Current Price</th>
+            <th className="px-4 py-2 text-left">Holding Qtq</th>
             <th className="px-4 py-2 text-left">Price Difference</th>
             <th className="px-4 py-2 text-left">Percentage Difference</th>
             <th className="px-4 py-2 text-left">52-Week High</th>
@@ -23,11 +25,26 @@ const Overview = ({ holdings }) => {
         <tbody>
           {rows.map((stock, index) => (
             <tr key={stock.stock_id || index} className="border-b">
+              {/* Logo Column */}
+              <td className="px-4 py-2">
+                {stock.isBlank ? (
+                  "-"
+                ) : (
+                  <img
+                    src={stock.logo}
+                    alt={`${stock.stock_name} logo`}
+                    className="w-8 h-8 object-contain"
+                  />
+                )}
+              </td>
               <td className="px-4 py-2">
                 {stock.isBlank ? "-" : stock.stock_name}
               </td>
               <td className="px-4 py-2">
                 {stock.isBlank ? "-" : `$${stock.curr_price?.toFixed(2)}`}
+              </td>
+              <td className="px-4 py-2">
+                {stock.isBlank ? "-" : `${stock.holding_quantity?.toFixed(2)}`}
               </td>
               <td
                 className={`px-4 py-2 ${

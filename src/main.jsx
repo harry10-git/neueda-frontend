@@ -9,6 +9,7 @@ import StockData from './pages/stockData.jsx'
 import Home from './pages/home.jsx'
 import Landing from './pages/landing.jsx'
 import { AuthContextProvider } from './context/authContext.jsx' // Use AuthContextProvider
+import Sell from './pages/sell.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -18,6 +19,7 @@ createRoot(document.getElementById('root')).render(
           <Route path="/" element={<Landing />} />
           <Route path="/home" element={<Home />} />
           <Route path="/register" element={<Register />} />
+          <Route path='/sell' element={<Sell/>}></Route>
           <Route path="/login" element={<Login />} />
           <Route path="/stockData" element={<StockData />} />
         </Routes>
