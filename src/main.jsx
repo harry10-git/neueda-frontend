@@ -4,18 +4,22 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './index.css'
 import App from './App.jsx'
 import Login from './pages/login.jsx'
+import Register from './pages/register.jsx'
 import StockData from './pages/stockData.jsx'
-
+import Landing from './pages/landing.jsx'
+import { AuthContextProvider } from './context/authContext.jsx' // Use AuthContextProvider
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-  <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/stockData" element={<StockData />} />
-      
-      </Routes>
-    </BrowserRouter>
+    <AuthContextProvider> {/* Wrap with AuthContextProvider */}
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/stockData" element={<StockData />} />
+        </Routes>
+      </BrowserRouter>
+    </AuthContextProvider>
   </StrictMode>,
 )
