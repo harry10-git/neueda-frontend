@@ -6,6 +6,7 @@ import App from './App.jsx'
 import Login from './pages/login.jsx'
 import Register from './pages/register.jsx'
 import StockData from './pages/stockData.jsx'
+import Home from './pages/home.jsx'
 import Landing from './pages/landing.jsx'
 import { AuthContextProvider } from './context/authContext.jsx' // Use AuthContextProvider
 
@@ -15,6 +16,7 @@ createRoot(document.getElementById('root')).render(
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Landing />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/stockData" element={<StockData />} />
