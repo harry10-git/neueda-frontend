@@ -11,12 +11,17 @@ export const AuthContextProvider = ({ children }) => {
         setUser(res.data);
     };
 
+    const logout = async (inputs) => {
+    await axios.post("http://localhost:3001/api/logout/");
+    setUser(null);
+  };
+
     useEffect(() => {
         localStorage.setItem("user", JSON.stringify(user));
     }, [user]);
 
     return (
-        <AuthContext.Provider value={{ user, login }}>
+        <AuthContext.Provider value={{ user, login, logout }}>
             {children}
         </AuthContext.Provider>
     );

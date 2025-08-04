@@ -38,10 +38,10 @@ const News = () => {
             >
               {/* News Image */}
               <img
-                src={item.image}
-                alt={item.headline}
-                className="w-32 h-32 object-cover rounded-md"
-              />
+  src={item.image}
+  alt={item.headline}
+  className="w-32 h-32 object-contain rounded-md"
+/>
               {/* News Details */}
               <div>
                 <h4 className="text-lg font-bold text-gray-800 mb-2">

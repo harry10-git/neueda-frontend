@@ -1,9 +1,19 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; // Import useNavigate
 import { AuthContext } from "../context/authContext"; // Import AuthContext
 
 const Navbar = () => {
-  const { user } = useContext(AuthContext); // Access user from context
+  const { user, logout } = useContext(AuthContext); // Access user and logout from context
+  const navigate = useNavigate(); // Initialize navigate
+
+  const handleLogout = async () => {
+    try {
+      await logout(); // Call the logout function from AuthContext
+      navigate("/"); // Redirect to the home page after logout
+    } catch (error) {
+      alert(`Logout failed: ${error.message}`); // Handle any errors
+    }
+  };
 
   return (
     <nav className=" bg-[linear-gradient(60deg,_rgb(247,_149,_51),_rgb(243,_112,_85),_rgb(239,_78,_123),_rgb(161,_102,_171),_rgb(80,_115,_184),_rgb(16,_152,_173),_rgb(7,_179,_155),_rgb(111,_186,_130))] px-8 py-4 shadow-md">
@@ -53,12 +63,12 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
-            <Link
-              to="/logout"
+            <button
+              onClick={handleLogout}
               className="hover:text-gray-200 transition-colors duration-300"
             >
               Logout
-            </Link>
+            </button>
           </li>
         </ul>
       </div>
