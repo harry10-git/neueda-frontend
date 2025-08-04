@@ -52,20 +52,31 @@ const Landing = () => {
             repeat={Infinity}
           />
 
-          {/* Buttons for Register and Login */}
+          {/* Conditional Buttons */}
           <div className="mt-6 flex space-x-4">
-            <button
-              onClick={() => navigate("/register")}
-              className="px-10 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
-            >
-              Register
-            </button>
-            <button
-              onClick={() => navigate("/login")}
-              className="px-10 py-2 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-600 transition-colors duration-300"
-            >
-              Login
-            </button>
+            {user ? (
+              <button
+                onClick={() => navigate("/home")}
+                className="px-12 py-3 text-white font-semibold rounded-lg shadow-md  bg-[linear-gradient(60deg,_rgb(247,_149,_51),_rgb(243,_112,_85),_rgb(239,_78,_123),_rgb(161,_102,_171),_rgb(80,_115,_184),_rgb(16,_152,_173),_rgb(7,_179,_155),_rgb(111,_186,_130))] hover:scale-110 text-xl duration-300"
+              >
+                Let's dive in
+              </button>
+            ) : (
+              <>
+                <button
+                  onClick={() => navigate("/register")}
+                  className="px-10 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
+                >
+                  Register
+                </button>
+                <button
+                  onClick={() => navigate("/login")}
+                  className="px-10 py-2 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-600 transition-colors duration-300"
+                >
+                  Login
+                </button>
+              </>
+            )}
           </div>
         </div>
       </div>
