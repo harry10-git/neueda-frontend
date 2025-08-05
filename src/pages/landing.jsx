@@ -7,6 +7,9 @@ import AutoSlider from "../components/Slider";
 import Navbar from "../components/Navbar"; // Import Navbar
 import { AuthContext } from "../context/authContext"; // Import AuthContext
 
+import Fancy from '../components/fancy'
+import { div } from "motion/react-client";
+
 const Landing = () => {
   const navigate = useNavigate(); // Initialize navigate
   const { user } = useContext(AuthContext); // Get user from AuthContext
@@ -55,12 +58,9 @@ const Landing = () => {
           {/* Conditional Buttons */}
           <div className="mt-6 flex space-x-4">
             {user ? (
-              <button
-                onClick={() => navigate("/home")}
-                className="px-12 py-3 text-white font-semibold rounded-lg shadow-md  bg-[linear-gradient(60deg,_rgb(247,_149,_51),_rgb(243,_112,_85),_rgb(239,_78,_123),_rgb(161,_102,_171),_rgb(80,_115,_184),_rgb(16,_152,_173),_rgb(7,_179,_155),_rgb(111,_186,_130))] hover:scale-110 text-xl duration-300"
-              >
-                Let's dive in
-              </button>
+              <div onClick={() => navigate("/home")} className="cursor-pointer">
+  <Fancy />
+</div>
             ) : (
               <>
                 <button
@@ -80,7 +80,8 @@ const Landing = () => {
           </div>
         </div>
       </div>
-
+      
+            
       <div className="mt-8">
         <AutoSlider />
       </div>

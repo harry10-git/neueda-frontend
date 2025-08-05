@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../context/authContext";
 import Navbar from "../components/Navbar";
+import Lottie from "react-lottie-player"; // Import Lottie player
+import sellAnimation from "../assets/sell.json"; // Import the sell animation JSON file
 
 const Sell = () => {
   const { user } = useContext(AuthContext); // Get user from AuthContext
@@ -16,16 +18,21 @@ const Sell = () => {
   useEffect(() => {
     const fetchHoldings = async () => {
       try {
+        const startTime = Date.now(); // Record the start time
         const response = await fetch(`http://localhost:3001/api/holdings/${user.user_id}`);
         if (!response.ok) {
           throw new Error("Failed to fetch holdings");
         }
         const data = await response.json();
-        setHoldings(data);
+        const elapsedTime = Date.now() - startTime; // Calculate elapsed time
+        const delay = Math.max(3000 - elapsedTime, 0); // Ensure a minimum of 3 seconds
+        setTimeout(() => {
+          setHoldings(data);
+          setLoading(false); // Stop the loading animation
+        }, delay);
       } catch (err) {
         setError(err.message);
-      } finally {
-        setLoading(false);
+        setLoading(false); // Stop the loading animation in case of an error
       }
     };
 
@@ -64,14 +71,28 @@ const Sell = () => {
     }
   };
 
+  if (loading) {
+    return (
+      <div>
+        <Navbar />
+        <div className="flex items-center justify-center h-screen">
+          <Lottie
+            loop
+            animationData={sellAnimation}
+            play
+            style={{ width: 650, height: 650 }}
+          />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div>
       <Navbar />
       <div className="p-8">
         <h1 className="text-2xl font-bold mb-6">Sell Stocks</h1>
-        {loading ? (
-          <p>Loading holdings...</p>
-        ) : error ? (
+        {error ? (
           <p className="text-red-500">{error}</p>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">

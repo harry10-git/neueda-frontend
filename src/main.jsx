@@ -11,6 +11,7 @@ import Landing from './pages/landing.jsx'
 import { AuthContextProvider } from './context/authContext.jsx' // Use AuthContextProvider
 import Sell from './pages/sell.jsx'
 import Buy from './pages/buy.jsx'
+import AddCash from './pages/addCash.jsx' // Import AddCash page
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -23,6 +24,7 @@ createRoot(document.getElementById('root')).render(
           <Route path='/sell' element={<Sell/>}></Route>
           <Route path="/buy" element={<Buy />} />
           <Route path="/login" element={<Login />} />
+          <Route path='/addCash' element={<AddCash />} />
           <Route path="/stockData" element={<StockData />} />
         </Routes>
       </BrowserRouter>

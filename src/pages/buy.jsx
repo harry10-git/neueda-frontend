@@ -2,6 +2,8 @@ import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { AuthContext } from "../context/authContext"; // Import AuthContext
+import Lottie from "react-lottie-player"; // Import Lottie player
+import buyAnimation from "../assets/buy.json"; // Import the buy animation JSON file
 
 const Buy = () => {
   const { user } = useContext(AuthContext); // Get user from AuthContext
@@ -10,33 +12,38 @@ const Buy = () => {
   const [buyQuantity, setBuyQuantity] = useState(""); // Track input quantity
   const [totalPrice, setTotalPrice] = useState(0); // Track total price
   const [walletCash, setWalletCash] = useState(0); // Initialize wallet cash
+  const [isLoading, setIsLoading] = useState(true); // State to manage loading animation
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchStocks = async () => {
       try {
+        const startTime = Date.now(); // Record the start time
         const response = await fetch("http://localhost:3001/api/getAllStockBuy/");
         if (!response.ok) {
           throw new Error("Failed to fetch stocks");
         }
         const data = await response.json();
-        setStocks(data);
+        const elapsedTime = Date.now() - startTime; // Calculate elapsed time
+        const delay = Math.max(3000 - elapsedTime, 0); // Ensure a minimum of 3 seconds
+        setTimeout(() => {
+          setStocks(data);
+          setIsLoading(false); // Stop the loading animation
+        }, delay);
       } catch (error) {
         console.error("Error fetching stocks:", error);
+        setIsLoading(false); // Stop the loading animation in case of an error
       }
     };
 
     const fetchWalletCash = async () => {
       try {
-        console.log('user id', user.user_id);
-        
         const response = await fetch("http://localhost:3001/api/getWalletCash/", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ user_id: user.user_id }), // Pass user_id in the body
-          
         });
 
         if (!response.ok) {
@@ -44,8 +51,6 @@ const Buy = () => {
         }
 
         const data = await response.json();
-        console.log('gotten cash ', data.wallet_cash);
-        
         setWalletCash(Number(data.wallet_cash)); // Update wallet cash from API response
       } catch (error) {
         console.error("Error fetching wallet cash:", error);
@@ -99,6 +104,22 @@ const Buy = () => {
     setBuyQuantity(quantity); // Update the quantity
     setTotalPrice(quantity * stockPrice); // Calculate total price
   };
+
+  if (isLoading) {
+    return (
+      <div>
+        <Navbar />
+        <div className="flex items-center justify-center h-screen">
+          <Lottie
+            loop
+            animationData={buyAnimation}
+            play
+            style={{ width: 650, height: 650 }}
+          />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div>
