@@ -49,19 +49,26 @@ const Navbar = () => {
       <div className="flex items-center justify-between">
         {/* Title and Username */}
         <div className="flex items-center space-x-4">
-          <h1 className="text-2xl font-bold text-white">NeuCoin</h1>
-          {user && (
-            <span className="text-lg text-white font-medium">
-              Welcome, {user.user_name}
-            </span>
-          )}
+          <button
+            onClick={() => navigate("/")} // Navigate to `/` on click
+            className="text-2xl font-bold text-white hover:text-blue-400 transition-colors duration-300 hover:scale-110"
+          >
+            NeuCoin
+          </button>
+          <div className="flex items-center justify-center">
+            {user && (
+              <span className="text-lg text-white font-medium">
+                Welcome, {user.user_name}
+              </span>
+            )}
+          </div>
         </div>
 
         {/* Links */}
         <ul className="flex space-x-6 text-white font-medium items-center">
           <li>
             <Link
-              to="/"
+              to="/home"
               className="hover:text-gray-200 transition-colors duration-300"
             >
               Home

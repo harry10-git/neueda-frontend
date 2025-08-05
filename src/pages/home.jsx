@@ -7,7 +7,7 @@ import HoldingsList from "../components/HoldingList"; // Import the HoldingsList
 import Overview from "../components/Overview";
 import News from "../components/News";
 import Lottie from "react-lottie-player"; // Import Lottie player
-import loadingAnimation from "../assets/loading.json"; // Import the loading animation JSON file
+import loadingAnimation from "../assets/Loading circles.json"; // Import the loading animation JSON file
 import "./home.css";
 
 const Home = () => {
@@ -56,14 +56,24 @@ const Home = () => {
     );
   }
 
+  if (!error && holdings.length === 0) {
+    return (
+      <div>
+        <Navbar />
+        <div className="flex items-center justify-center h-screen">
+          <p className="text-2xl font-bold text-gray-700 text-center">
+            You have no holdings currently, please buy some stocks.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div>
       <Navbar />
       <div className="p-8">
         {error && <p className="text-red-500">{error}</p>}
-        {!error && holdings.length === 0 && (
-          <p className="text-gray-500">No holdings found.</p>
-        )}
 
         <div className="grid grid-cols-5 gap-4">
           <div className="col-span-2">
