@@ -1,10 +1,39 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom"; // Import useNavigate
 import { AuthContext } from "../context/authContext"; // Import AuthContext
+import { FaWallet } from "react-icons/fa"; // Import wallet icon
 
 const Navbar = () => {
   const { user, logout } = useContext(AuthContext); // Access user and logout from context
+  const [walletCash, setWalletCash] = useState(null); // State to store wallet cash
   const navigate = useNavigate(); // Initialize navigate
+
+  const fetchWalletCash = async () => {
+    try {
+      const response = await fetch("http://localhost:3001/api/getWalletCash/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ user_id: user.user_id }), // Pass user_id in the body
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch wallet cash");
+      }
+
+      const data = await response.json();
+      setWalletCash(Number(data.wallet_cash)); // Update wallet cash from API response
+    } catch (error) {
+      console.error("Error fetching wallet cash:", error);
+    }
+  };
+
+  useEffect(() => {
+    if (user) {
+      fetchWalletCash();
+    }
+  }, [user]);
 
   const handleLogout = async () => {
     try {
@@ -23,13 +52,13 @@ const Navbar = () => {
           <h1 className="text-2xl font-bold text-white">NeuCoin</h1>
           {user && (
             <span className="text-lg text-white font-medium">
-              Welcome, {user.user_name}, {user.user_id}
+              Welcome, {user.user_name}
             </span>
           )}
         </div>
 
         {/* Links */}
-        <ul className="flex space-x-6 text-white font-medium">
+        <ul className="flex space-x-6 text-white font-medium items-center">
           <li>
             <Link
               to="/"
@@ -56,21 +85,40 @@ const Navbar = () => {
           </li>
           <li>
             <Link
+              to="/buy"
+              className="hover:text-gray-200 transition-colors duration-300"
+            >
+              Buy
+            </Link>
+          </li>
+          <li>
+            <Link
               to="/sell"
               className="hover:text-gray-200 transition-colors duration-300"
             >
               Sell
             </Link>
           </li>
+
+          {/* Wallet Icon */}
           <li>
             <button
-              onClick={handleLogout}
-              className="hover:text-gray-200 transition-colors duration-300"
+              onClick={() => navigate("/addCash")}
+              className="flex items-center space-x-2 hover:text-gray-200 transition-colors duration-300"
             >
-              Logout
+              <FaWallet className="text-xl" /> {/* Wallet Icon */}
+              <span>Wallet</span>
             </button>
           </li>
         </ul>
+
+        {/* Logout */}
+        <button
+          onClick={handleLogout}
+          className="text-white font-medium hover:text-gray-200 transition-colors duration-300"
+        >
+          Logout
+        </button>
       </div>
     </nav>
   );
