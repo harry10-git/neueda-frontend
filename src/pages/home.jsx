@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { AuthContext } from "../context/authContext"; // Import AuthContext
 import axios from "axios";
@@ -15,6 +16,8 @@ const Home = () => {
   const [holdings, setHoldings] = useState([]); // State to store stock holdings
   const [error, setError] = useState(null); // State to handle errors
   const [isLoading, setIsLoading] = useState(true); // State to manage loading animation
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchHoldings = async () => {
@@ -97,9 +100,12 @@ const Home = () => {
             </div>
 
             <div className="mt-5 flex justify-center">
-              <button className="px-4 py-2 bg-indigo-500 font-sans font-bold text-white rounded-xl hover:scale-110">
-                View Detailed Information
-              </button>
+              <button
+  onClick={() => navigate("/detailed")}
+  className="px-4 py-2 bg-indigo-500 font-sans font-bold text-white rounded-xl hover:scale-110"
+>
+  View Detailed Information
+</button>
             </div>
           </div>
         </div>
