@@ -13,6 +13,7 @@ import Sell from './pages/sell.jsx'
 import Buy from './pages/buy.jsx'
 import AddCash from './pages/addCash.jsx' // Import AddCash page
 import Detailed from './pages/detailed.jsx' // Import Detailed page
+import ChatBot from './pages/chatbot.jsx' // Import ChatBot page
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -28,6 +29,7 @@ createRoot(document.getElementById('root')).render(
           <Route path="/login" element={<Login />} />
           <Route path='/addCash' element={<AddCash />} />
           <Route path="/stockData" element={<StockData />} />
+          <Route path="/chatbot" element={<ChatBot />} />
         </Routes>
       </BrowserRouter>
     </AuthContextProvider>
