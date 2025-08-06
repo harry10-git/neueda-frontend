@@ -69,7 +69,7 @@ const Navbar = () => {
           <li>
             <Link
               to="/home"
-              className="hover:text-gray-200 transition-colors duration-300"
+              className="hover:text-gray-200 transition-colors duration-300 hover:scale-150"
             >
               Home
             </Link>
@@ -82,14 +82,14 @@ const Navbar = () => {
               StockData
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link
               to="/transactions"
               className="hover:text-gray-200 transition-colors duration-300"
             >
               Transactions
             </Link>
-          </li>
+          </li> */}
           <li>
             <Link
               to="/buy"
@@ -122,9 +122,10 @@ const Navbar = () => {
         {/* Logout */}
         <button
           onClick={handleLogout}
-          className="text-white font-medium hover:text-gray-200 transition-colors duration-300"
+          className="rounded-md px-3.5 py-2 m-1 overflow-hidden relative group cursor-pointer border-2 font-medium border-white  text-white hover:border-white"
         >
-          Logout
+          <span className="absolute w-64 h-0 transition-all duration-300 origin-center rotate-45 -translate-x-20 bg-red-400 top-1/2 group-hover:h-64 group-hover:-translate-y-32 ease "></span>
+          <span className="relative text-white transition duration-300 group-hover:text-white ease">Logout</span>
         </button>
       </div>
     </nav>
