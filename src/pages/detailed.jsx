@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 import { AuthContext } from "../context/authContext";
 import axios from "axios";
 import Lottie from "react-lottie-player";
-import loadingAnimation from "../assets/Loading circles.json";
+import loadingAnimation from "../assets/Ai-powered marketing tools abstract.json";
 import BarChartComponent from "../components/BarChartComponent";
 import DoughnutChartComponent from "../components/DoughnutChartComponent";
 import PnLTableComponent from "../components/PnLTableComponent"; // Import PnLTableComponent
