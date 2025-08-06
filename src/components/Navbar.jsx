@@ -10,7 +10,7 @@ const Navbar = () => {
 
   const fetchWalletCash = async () => {
     try {
-      const response = await fetch("http://localhost:3001/api/getWalletCash/", {
+      const response = await fetch("/api/getWalletCash/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -6,7 +6,7 @@ export default function AutoSlider() {
   useEffect(() => {
     const fetchImages = async () => {
       try {
-        const response = await fetch("http://localhost:3001/api/allStockLogos");
+        const response = await fetch("/api/allStockLogos");
         if (!response.ok) {
           throw new Error("Failed to fetch images");
         }

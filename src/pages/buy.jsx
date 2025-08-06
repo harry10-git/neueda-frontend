@@ -19,7 +19,7 @@ const Buy = () => {
     const fetchStocks = async () => {
       try {
         const startTime = Date.now(); // Record the start time
-        const response = await fetch("http://localhost:3001/api/getAllStockBuy/");
+        const response = await fetch("/api/getAllStockBuy/");
         if (!response.ok) {
           throw new Error("Failed to fetch stocks");
         }
@@ -38,7 +38,7 @@ const Buy = () => {
 
     const fetchWalletCash = async () => {
       try {
-        const response = await fetch("http://localhost:3001/api/getWalletCash/", {
+        const response = await fetch("/api/getWalletCash/", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -72,7 +72,7 @@ const Buy = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:3001/api/buy", {
+      const response = await fetch("/api/buy", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

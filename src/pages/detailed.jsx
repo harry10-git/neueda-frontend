@@ -20,7 +20,7 @@ const Detailed = () => {
         if (user && user.user_id) {
           const startTime = Date.now();
           const response = await axios.get(
-            `http://localhost:3001/api/holdings/${user.user_id}`
+            `/api/holdings/${user.user_id}`
           );
           const elapsedTime = Date.now() - startTime;
           const delay = Math.max(2000 - elapsedTime, 0);

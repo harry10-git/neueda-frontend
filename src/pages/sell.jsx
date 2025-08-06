@@ -19,7 +19,7 @@ const Sell = () => {
     const fetchHoldings = async () => {
       try {
         const startTime = Date.now(); // Record the start time
-        const response = await fetch(`http://localhost:3001/api/holdings/${user.user_id}`);
+        const response = await fetch(`/api/holdings/${user.user_id}`);
         if (!response.ok) {
           throw new Error("Failed to fetch holdings");
         }
@@ -47,7 +47,7 @@ const Sell = () => {
       sellQuantity: sellQuantity, // Updated field name
     });
     try {
-      const response = await fetch("http://localhost:3001/api/sell/", {
+      const response = await fetch("/api/sell/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
