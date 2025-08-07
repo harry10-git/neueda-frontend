@@ -10,7 +10,14 @@ const PnLTableComponent = ({ holdings }) => {
   }, 0);
 
   return (
-    <div>
+    <div className="">
+    <div className="flex items-center justify-center mb-4 text-2xl">
+      <p className="mx-8">Total Money Invested: $<CountUp start={0} end={holdings.reduce((sum, h) => sum + h.valuation, 0)} duration={2} decimals={2} separator="," />
+      </p>
+      <p className="mx-8">
+        Total Current Valuation: $<CountUp start={0} end={holdings.reduce((sum, h) => sum + (h.curr_price * h.holding_quantity), 0)} duration={2} decimals={2} separator="," />
+      </p>
+    </div>
       <div className="bg-[#1A2A80] text-white shadow-md rounded-lg p-6">
         <div className="bg-white shadow-md text-black my-2 py-1 flex items-center justify-center px-4 rounded-lg">
           <h2 className="text-xl font-bold">
@@ -59,6 +66,8 @@ const PnLTableComponent = ({ holdings }) => {
           </tbody>
         </table>
       </div>
+
+      
     </div>
   );
 };

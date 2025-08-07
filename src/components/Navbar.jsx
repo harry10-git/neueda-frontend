@@ -51,13 +51,13 @@ const Navbar = () => {
         <div className="flex items-center space-x-4">
           <button
             onClick={() => navigate("/")} // Navigate to `/` on click
-            className="text-2xl font-bold text-white hover:text-blue-400 transition-colors duration-300 hover:scale-110"
+            className="text-2xl font-bold text-white hover:text-blue-800 transition-colors hover:scale-110 duration-300 "
           >
             NeuCoin
           </button>
           <div className="flex items-center justify-center">
             {user && (
-              <span className="text-lg text-white font-medium">
+              <span className="text-xl text-white font-medium">
                 Welcome, {user.user_name}
               </span>
             )}
@@ -66,15 +66,15 @@ const Navbar = () => {
 
         {/* Links */}
         <ul className="flex space-x-6 text-white font-medium items-center">
-          <li>
+          <li className="hover:scale-125 duration-300">
             <Link
               to="/home"
-              className="hover:text-gray-200 transition-colors duration-300 hover:scale-150"
+              className="hover:text-gray-200 transition-colors duration-300"
             >
               Home
             </Link>
           </li>
-          <li>
+          <li className="hover:scale-125 duration-300">
             <Link
               to="/stockData"
               className="hover:text-gray-200 transition-colors duration-300"
@@ -82,7 +82,7 @@ const Navbar = () => {
               StockData
             </Link>
           </li>
-          <li>
+          <li className="hover:scale-125 duration-300">
             <Link
               to="/buy"
               className="hover:text-gray-200 transition-colors duration-300"
@@ -90,7 +90,7 @@ const Navbar = () => {
               Buy
             </Link>
           </li>
-          <li>
+          <li className="hover:scale-125 duration-300">
             <Link
               to="/sell"
               className="hover:text-gray-200 transition-colors duration-300"
@@ -100,7 +100,7 @@ const Navbar = () => {
           </li>
 
           {/* Wallet Icon */}
-          <li>
+          <li className="hover:scale-125 duration-300">
             <button
               onClick={() => navigate("/addCash")}
               className="flex items-center space-x-2 hover:text-gray-200 transition-colors duration-300"
@@ -113,6 +113,7 @@ const Navbar = () => {
 
         {/* Chat-Bot and Logout Buttons */}
         <div className="flex items-center space-x-4">
+        {/* <h3 className="text-white font-serif text-lg">{user.user_name}</h3> */}
           {/* Chat-Bot Button */}
           <button
             onClick={() => navigate("/chatbot")}

@@ -16,10 +16,10 @@ const Overview = ({ holdings }) => {
             <th className="px-4 py-2 text-left">Stock Name</th>
             <th className="px-4 py-2 text-left">Current Price</th>
             <th className="px-4 py-2 text-left">Holding Qtq</th>
-            <th className="px-4 py-2 text-left">Price Difference</th>
-            <th className="px-4 py-2 text-left">Percentage Difference</th>
-            <th className="px-4 py-2 text-left">52-Week High</th>
-            <th className="px-4 py-2 text-left">52-Week Low</th>
+            <th className="px-4 py-2 text-left">Day Change</th>
+            <th className="px-4 py-2 text-left">% Day Change</th>
+            <th className="px-4 py-2 text-left">Year High</th>
+            <th className="px-4 py-2 text-left">Year Low</th>
           </tr>
         </thead>
         <tbody>

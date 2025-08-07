@@ -76,7 +76,8 @@ const AddCash = () => {
       // Show animation for 3 seconds and navigate to /home
       setShowAnimation(true);
       setTimeout(() => {
-        navigate("/home");
+        setShowAnimation(false);
+        navigate("/addCash");
       }, 3000);
     } catch (error) {
       console.error("Error adding cash:", error);
