@@ -17,7 +17,7 @@ const AddCash = () => {
   useEffect(() => {
     const fetchWalletCash = async () => {
       try {
-        const response = await fetch("http://localhost:3001/api/getWalletCash/", {
+        const response = await fetch("/api/getWalletCash/", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -52,7 +52,7 @@ const AddCash = () => {
 
     setLoading(true); // Start loading
     try {
-      const response = await fetch("http://localhost:3001/api/addCash", {
+      const response = await fetch("/api/addCash", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
