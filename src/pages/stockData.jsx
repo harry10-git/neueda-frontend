@@ -13,7 +13,7 @@ const StockData = () => {
     const fetchStocks = async () => {
       const startTime = Date.now(); // Record the start time
       try {
-        const response = await fetch("http://localhost:3001/api/getAllStocks");
+        const response = await fetch("/api/getAllStocks");
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }

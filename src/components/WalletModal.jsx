@@ -11,7 +11,7 @@ const WalletModal = ({ onClose, userId, currentBalance, updateWalletBalance }) =
       return;
     }
 
-    const res = await axios.post("http://localhost:3001/api/addCash", {
+    const res = await axios.post("/api/addCash", {
       user_id: userId,
       amount: parsedAmount,
     });

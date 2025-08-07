@@ -7,12 +7,12 @@ export const AuthContextProvider = ({ children }) => {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")) || null);
 
     const login = async (inputs) => {
-        const res = await axios.post('http://localhost:3001/api/login/', inputs);
+        const res = await axios.post('/api/login/', inputs);
         setUser(res.data);
     };
 
     const logout = async (inputs) => {
-    await axios.post("http://localhost:3001/api/logout/");
+    await axios.post("/api/logout/");
     setUser(null);
   };
 

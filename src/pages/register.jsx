@@ -31,7 +31,7 @@ const Register = () => {
 
     try {
       const response = await Promise.all([
-        fetch('http://localhost:3001/api/register/', {
+        fetch('/api/register/', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

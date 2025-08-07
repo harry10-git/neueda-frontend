@@ -10,7 +10,7 @@ const News = () => {
     const fetchNews = async () => {
       try {
         if (user && user.user_id) {
-          const response = await fetch(`http://localhost:3001/api/stockNews/${user.user_id}`);
+          const response = await fetch(`/api/stockNews/${user.user_id}`);
           if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
           }

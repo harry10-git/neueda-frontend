@@ -25,7 +25,7 @@ const Home = () => {
         if (user && user.user_id) {
           const startTime = Date.now(); // Record the start time
           const response = await axios.get(
-            `http://localhost:3001/api/holdings/${user.user_id}`
+            `/api/holdings/${user.user_id}`
           );
           const elapsedTime = Date.now() - startTime; // Calculate elapsed time
           const delay = Math.max(2000 - elapsedTime, 0); // Ensure a minimum of 2 seconds
