@@ -9,13 +9,9 @@ const Login = () => {
     password: ''
   });
 
-  // const [message, setMessage] = useState('');
-  // const [isError, setIsError] = useState(false);
   const [err, setError] = useState(null);
-
   const navigate = useNavigate();
-
-  const {login} = useContext(AuthContext);
+  const { login } = useContext(AuthContext);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,17 +22,21 @@ const Login = () => {
     e.preventDefault();
     try {
       await login(formData); // Use the login function from AuthContext
-      navigate('/home'); // Redirect to home page after successful login
-
+      navigate('/'); // Redirect to home page after successful login
     } catch (error) {
       setError(error);
     }
-  }
+  };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-md bg-white rounded-lg shadow-md p-6">
-        <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">Login</h2>
+    <div
+      className="flex items-center justify-center min-h-screen bg-cover bg-center"
+      style={{
+        backgroundImage: `url('src/assets/images-stocks/sean-pollock-PhYq704ffdA-unsplash.jpg')`
+      }}
+    >
+      <div className="w-full max-w-md bg-white rounded-lg p-6 py-12 shadow-2xl hover:scale-115 duration-300">
+        <h2 className="text-2xl font-bold text-center text-gray-800 mb-6 font-serif">Login</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label

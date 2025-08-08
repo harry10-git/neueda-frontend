@@ -28,7 +28,7 @@ const Home = () => {
             `/api/holdings/${user.user_id}`
           );
           const elapsedTime = Date.now() - startTime; // Calculate elapsed time
-          const delay = Math.max(2000 - elapsedTime, 0); // Ensure a minimum of 2 seconds
+          const delay = Math.max(3000 - elapsedTime, 0); // Ensure a minimum of 2 seconds
           setTimeout(() => {
             setHoldings(response.data); // Set the holdings data
             setIsLoading(false); // Stop the loading animation
